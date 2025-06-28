@@ -1,6 +1,7 @@
 import LoginWithEmail from "@/components/auth/LoginwithEmail";
-import LoginWithGoogle from "@/components/auth/LoginWithGoogle";
+import LoginWithGoogle from "@/components/auth/LoginWithGooogle";
 import LoginWithLinkdin from "@/components/auth/LoginWithLinkdin";
+
 import { Icons } from "@/components/Icons";
 import Image from "next/image";
 
@@ -15,8 +16,8 @@ export default function SignIn(){
       <div className="p-4 max-w-xs mx-auto flex flex-col justify-center">
         <h1 className="text-4xl font-bold text-center mb-4">Sign In</h1>
         <LoginWithEmail/>
-        <LoginWithGoogle />
-        <LoginWithLinkdin />
+        <LoginWithGoogle/>
+        <LoginWithLinkdin/>
       </div>
     </div>
   );
