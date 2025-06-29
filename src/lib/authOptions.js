@@ -2,10 +2,11 @@
 import GoogleProvider from "next-auth/providers/google";
 import LinkedInProvider from "next-auth/providers/linkedin";
 import { PrismaAdapter } from "@auth/prisma-adapter"
-// import { prisma } from "@/prisma"
+
 import NextAuth from "next-auth";
+import { Prisma } from "@prisma/client";
 export const authOptions = {
-//   adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(Prisma),
    session: {
         strategy: 'jwt'
     },
