@@ -17,14 +17,14 @@ A modern and responsive Content Management System (CMS) for managing blogs, buil
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-- **Frontend:** React, TypeScript, Tailwind CSS  
-- **UI Components:** shadcn/ui  
-- **State Management:** React Context / Zustand (or your choice)  
-- **Backend:** Node.js/Express or Next.js API routes (adjust as per your backend)  
-- **Database:** MongoDB / Prisma / (your choice)  
-- **Authentication:** NextAuth.js / Custom Auth (if implemented)  
+- 🧩 **Frontend:** React, TypeScript, Tailwind CSS  
+- 🧱 **UI Components:** [shadcn/ui](https://ui.shadcn.com)  
+- ⚙️ **State Management:** React Context / Zustand  
+- 🖥️ **Backend:** Next.js API Routes  
+- 🗄️ **Database:** MongoDB with Prisma ORM  
+- 🔐 **Authentication:** NextAuth.js (Google, LinkedIn, etc.)
 
 ---
 
