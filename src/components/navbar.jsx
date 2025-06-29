@@ -9,9 +9,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { getAuthsession } from "@/lib/authOptions";
+import Image from "next/image";
 
-export default function NavBar() {
-  const auth = true;
+export default async function NavBar () {
+  const session = await getAuthsession();
+ console.log("seesion",session)
     const tempUser = {
     name: 'Sam',
     username: 'sam'
@@ -24,8 +27,8 @@ export default function NavBar() {
           Blogify
         </span>
       </Link>
-      {auth ? (
-        <UserModalComponent user={tempUser}/>
+      {session ? (
+        <UserModalComponent user={session?.user}/>
       ) : (
         <Link href="/sign-in" className="text-black dark:text-white">
           Sign In
@@ -38,8 +41,7 @@ export default function NavBar() {
 const UserModalComponent = ({ user }) => {
     return <DropdownMenu className="bg-gray-100">
             <DropdownMenuTrigger className="outline-none">
-              User
-                {/* <Image className="rounded-full border-2 border-[greenyellow]" src={user.image} width={30} height={30} /> */}
+                <Image className="rounded-full border-2 border-[greenyellow]" src={user.image} width={35} height={35} alt="profile image" />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
             <DropdownMenuLabel>Hi,{user.name} </DropdownMenuLabel>
