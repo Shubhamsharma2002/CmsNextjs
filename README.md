@@ -28,6 +28,7 @@ A modern and responsive Content Management System (CMS) for managing blogs, buil
 
 ---
 
+
 ## Installation
 
 1. Clone the repo  
@@ -36,6 +37,7 @@ A modern and responsive Content Management System (CMS) for managing blogs, buil
    cd blog-cms
    npm install
    npm run dev
+   
    ```
 
    
