@@ -1,3 +1,4 @@
+// just checking the date formate of the input
 export default function dateFormat(date){
     let tempDate;
 
