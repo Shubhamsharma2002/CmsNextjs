@@ -23,10 +23,12 @@ export default async function NavBar () {
   return (
     <nav className="w-full flex justify-between px-8 h-12 items-center">
       <Link href="/" className="flex items-center gap-2">
-        <Database />
-        <span className="font-extrabold text-black dark:text-white">
+        {/* <Database /> */}
+        {/* <span className="font-extrabold text-black dark:text-white">
           Blogify
-        </span>
+        </span> */}
+
+        <Image src={"/thumbnails/BlogifyLogo.png"} width={70} height={40} alt="website logo" className="rounded"/>
       </Link>
       {session ? (
         <UserModalComponent user={session?.user}/>
