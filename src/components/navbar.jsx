@@ -28,7 +28,7 @@ export default async function NavBar () {
           Blogify
         </span> */}
 
-        <Image src={"/thumbnails/BlogifyLogo.png"} width={70} height={40} alt="website logo" className="rounded"/>
+        <Image src={"/thumbnails/BlogifyLogo.png"} width={70} height={50} alt="website logo" className="rounded"/>
       </Link>
       {session ? (
         <UserModalComponent user={session?.user}/>
