@@ -3,20 +3,19 @@
 import { Form, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Tiptap from './textEditor/TipTapEditor';
+import { slugify } from 'slugmaster';
 
-export default function Editor() {
+export default function Editor({ onSave }) {
   const { register, handleSubmit } = useForm();
   const [content, setContent] = useState("");
+  const [ogImage , setOgImage] = useState("")
   const handlleChange = (value)=>{
      setContent(value)
   }
   const handleForm = (data)=>{
-     const fullData = {
-    ...data,
-    content, // ✅ Add TipTap content here
-  };
-  console.log(fullData, "Full form data including TipTap");
-      
+   console.log(data, "Full form data including TipTap");
+   const genratedSlug = slugify(data.title)
+      onSave({...data, slug:genratedSlug})
   }
  return(
        <section>
