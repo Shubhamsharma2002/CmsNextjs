@@ -4,18 +4,21 @@ import { Form, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Tiptap from './textEditor/TipTapEditor';
 import { slugify } from 'slugmaster';
+import ImageUpload from './imageUpload';
 
 export default function Editor({ onSave }) {
   const { register, handleSubmit } = useForm();
   const [content, setContent] = useState("");
   const [ogImage , setOgImage] = useState("")
   const handlleChange = (value)=>{
+    console.log(value);
+    
      setContent(value)
   }
   const handleForm = (data)=>{
    console.log(data, "Full form data including TipTap");
    const genratedSlug = slugify(data.title)
-      onSave({...data, slug:genratedSlug})
+      onSave({...data, slug:genratedSlug,ogImage,content})
   }
  return(
        <section>
@@ -40,6 +43,7 @@ export default function Editor({ onSave }) {
           type="text"
         />
          <h2 className="text-xl font-bold"> SEO Data</h2>
+           <ImageUpload returnImage={setOgImage} preloadedImage={ogImage} />
          <input
           {...register("keywords")}
           placeholder="Enter Keywords"

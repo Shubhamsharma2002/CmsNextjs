@@ -1,69 +1,86 @@
-import { useEffect, useState } from "react";
+'use client';
+import { useState } from 'react';
 
-import { storage } from "@static/FirebaseConfig"; 
-// import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
-import Image from "next/image";
+export default function ImageUpload({ returnImage, preloadedImage }) {
+  const [imageFile, setImageFile] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [uploaded, setUploaded] = useState(false); // Track if upload succeeded
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setImageFile(file);
+    setPreview(URL.createObjectURL(file));
+    setMessage("");
+    setUploaded(false); // reset on new file select
+  };
 
-
-
-export default function ImageUpload({ returnImage, preloadedImage }){
-    const [imageasFile, setImageAsFile] = useState();
-    const [loading, setLoading] = useState(false);
-    const [imageUrl, setImageUrl] = useState(null);
-
-    const handleImageAsFile = async(e) => {
-        const image = e.target.files[0]
-        setImageAsFile(image);
-        if(image){
-            uploadToFireBase(image);
-        }
-        
-    }
-    const uploadToFireBase = async(image)=> {
-        setLoading(true);
-        const storageRef = ref(storage, `images/${image.name}`);
-
-        try {
-            await uploadBytes(storageRef, image);
-            const url = await getDownloadURL(storageRef);
-            setImageUrl(url);
-            returnImage(url);
-        } catch (error) {
-            console.error('error took place', error.message);
-        } finally {
-            setLoading(false);
-        }
+  const handleUpload = async () => {
+    if (!imageFile) {
+      setMessage("❌ No file selected.");
+      return;
     }
 
-    if(preloadedImage){
-        return <div>
-            <label className="w-fit">
-                <span className="bg-gray-500/10 border-2 border-gray-500 border-dashed p-3 rounded w-[300px]">Update Cover image</span>
-                <input type="file" onChange={handleImageAsFile} hidden />
-            </label>
-            <Image className="border border-gray-400 rounded-md" width={300} height={170} src={preloadedImage} alt="upload image"  />
-         </div>
+    setLoading(true);
+    setMessage("");
+
+    const formData = new FormData();
+    formData.append('file', imageFile);
+    formData.append('upload_preset', 'blogify');
+    formData.append('cloud_name', 'dvpenqpdj');
+
+    try {
+      const res = await fetch(`https://api.cloudinary.com/v1_1/dvpenqpdj/image/upload`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await res.json();
+      setLoading(false);
+
+      if (data.secure_url) {
+        returnImage(data.secure_url);
+        setMessage("✅ Image uploaded successfully!");
+        setUploaded(true); // mark uploaded
+      } else {
+        setMessage("❌ Upload failed. Try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      setLoading(false);
+      setMessage("❌ Something went wrong during upload.");
     }
-    return <div className="py-2 flex flex-col gap-5 w-full">
-        <label className="w-fit">
-            <span className="bg-gray-500/10 border-2 border-gray-500 border-dashed p-3 rounded w-[300px]">Upload Cover image</span>
-            <input type="file" onChange={handleImageAsFile} hidden />
-        </label>
-        <div>
-        {
-            loading && (
-                <button disabled>
-                    Uploading...
-                </button>
-            )
-        }
-        { imageUrl && (
-            <div>
-                <h3>Uploaded successfully!</h3>
-                <img className="border border-gray-400 rounded-md" src={imageUrl} alt="upload image" style={{width: '30%'}} />
-            </div>
-        )}
-        </div>
+  };
+
+  return (
+    <div className="space-y-3">
+      {!uploaded && (
+        <>
+          <input type="file" accept="image/*" onChange={handleFileChange} />
+          <button
+            onClick={handleUpload}
+            className="px-4 py-2 bg-blue-500 text-white rounded"
+            disabled={loading}
+          >
+            {loading ? 'Uploading...' : 'Upload Image'}
+          </button>
+        </>
+      )}
+
+      {(uploaded || preloadedImage) && (
+        <img
+          src={preview || preloadedImage}
+          alt="Preview"
+          className="h-40 rounded border object-cover"
+        />
+      )}
+
+      {message && (
+        <p className={`text-sm ${message.startsWith("✅") ? "text-green-500" : "text-red-500"}`}>
+          {message}
+        </p>
+      )}
     </div>
+  );
 }

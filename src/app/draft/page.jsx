@@ -11,8 +11,12 @@ export default function Draftblog() {
     ogImage,
     metaDescription,
     status,
+    content
   }) => {
      console.log(slug,"slug");
+     console.log(ogImage);
+     console.log(content);
+     
      
   };
   return (
