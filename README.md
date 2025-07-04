@@ -24,7 +24,7 @@ A modern and responsive Content Management System (CMS) for managing blogs, buil
 - ⚙️ **State Management:** React Context / Zustand  
 - 🖥️ **Backend:** Next.js API Routes  
 - 🗄️ **Database:** MongoDB with Prisma ORM  
-- 🔐 **Authentication:** NextAuth.js (Google, LinkedIn, etc.)
+- 🔐 **Authentication:** NextAuth.js (Google, LinkedIn, Email, etc.)
 
 ---
 
@@ -33,7 +33,7 @@ A modern and responsive Content Management System (CMS) for managing blogs, buil
 
 1. Clone the repo  
    ```bash
-   git clone https://github.com/yourusername/blog-cms.git
+   git clone https://github.com/Shubhamsharma2002/CmsNextjs
    cd blog-cms
    npm install
    npm run dev
