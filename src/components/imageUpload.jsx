@@ -31,6 +31,7 @@ export default function ImageUpload({ returnImage, preloadedImage }) {
     formData.append('cloud_name', 'dvpenqpdj');
 
     try {
+      // cloudnary link
       const res = await fetch(`https://api.cloudinary.com/v1_1/dvpenqpdj/image/upload`, {
         method: 'POST',
         body: formData,
