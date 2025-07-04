@@ -2,7 +2,7 @@
 
 import { Toggle } from "@radix-ui/react-toggle";
 import { AlignCenter, AlignLeft, AlignRight, Bold, Heading1, Heading2, Heading3, Highlighter, Italic, List, ListOrdered, Strikethrough } from "lucide-react";
-
+// /tesxt editor menu bar
 export default function Menubar({editor}){
 if (!editor) {
     return null
