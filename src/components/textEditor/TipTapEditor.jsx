@@ -7,6 +7,7 @@ import TextAlign from '@tiptap/extension-text-align'
 import Highlight from '@tiptap/extension-highlight'
 
 export default function Tiptap ({content,onChange}) {
+  // editor setting
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -42,6 +43,7 @@ export default function Tiptap ({content,onChange}) {
 
   return (
     <div>
+      
       <Menubar editor={editor}/>
       <EditorContent editor={editor} />
     </div>
