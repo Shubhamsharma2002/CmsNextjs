@@ -4,6 +4,7 @@ A modern and responsive Content Management System (CMS) for managing blogs, buil
 
 ---
 
+
 ## Features
 
 - Create, edit, delete blog posts with rich content
@@ -17,6 +18,7 @@ A modern and responsive Content Management System (CMS) for managing blogs, buil
 
 ---
 
+
 ## 🛠️ Tech Stack
 
 - 🧩 **Frontend:** React, TypeScript, Tailwind CSS  
@@ -27,6 +29,7 @@ A modern and responsive Content Management System (CMS) for managing blogs, buil
 - 🔐 **Authentication:** NextAuth.js (Google, LinkedIn, Email, etc.)
 
 ---
+
 
 
 ## Installation
