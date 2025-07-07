@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider     = "mongodb"
-  url          = "mongodb+srv://shubhamtech004:Blogify2026@blogify-cluster.sz8zn5p.mongodb.net/blogify?retryWrites=true&w=majority&appName=Blogify-Cluster"
+  url          =  "mongodb+srv://shubhamtech004:Blogify2026@blogify-cluster.sz8zn5p.mongodb.net/blogify?retryWrites=true&w=majority&appName=Blogify-Cluster"
   relationMode = "prisma"
 }
 
