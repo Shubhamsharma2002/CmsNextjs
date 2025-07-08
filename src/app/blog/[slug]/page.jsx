@@ -1,7 +1,9 @@
+import "@/styles/blog.css"
 import dateFormat from "@/utils/dateFormate";
 import { Calendar } from "lucide-react";
 import Image from "next/image";
-// import "@/styles/blog.css"
+// import
+
 import { notFound } from "next/navigation";
 import Link from "next/link";
 const fetchSingleBlog = async(slug)=> {
@@ -14,7 +16,17 @@ const fetchSingleBlog = async(slug)=> {
     return data;
 }
 
+export async function generateMetadata({ params }){
+    const res = await fetchSingleBlog(params.slug);
 
+    return {
+        title: res.title,
+        description: res.excerpt,
+        openGraph: {
+            // images: [`${process.env.NEXT_PUBLIC_BASE_URL}/api/og?title=${res.title}`]
+        }
+    }
+}
 export default async function SingleBlog({params}){
    const { slug } = params;
     const post = await fetchSingleBlog(slug);
@@ -22,7 +34,7 @@ export default async function SingleBlog({params}){
     return (
         <section>
             <div className="flex flex-col gap-4 items-center">
-                {post.thumbnail && <Image className="rounded border w-[90%] md:w-[700px]" src={post.thumbnail} width={500} height={250} alt={post.title}/>}
+                {post.thumbnail && <Image className="rounded border w-[90%] md:w-[600px]" src={post.thumbnail} width={500} height={250} alt={post.title}/>}
                 <h1 className="text-2xl md:text-4xl font-bold">{post.title}</h1>
                 <div className="meta-of-a-blog space-y-2">
                     <div className="flex flex-col sm:flex-row gap-3">
