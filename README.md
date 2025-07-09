@@ -5,17 +5,16 @@ A modern and responsive Content Management System (CMS) for managing blogs, buil
 ---
 
 
-## Features
+## ✨ Features
 
-- Create, edit, delete blog posts with rich content
-- Manage blog categories and tags
-- Responsive and accessible UI using [shadcn/ui](https://ui.shadcn.com/)
-- Sidebar navigation with collapsible menus
-- User-friendly forms with validation and feedback
-- Dark mode support
-- SEO-friendly and optimized performance
-- Mobile-friendly design
-
+- 📝 **Rich Blog Editor** – Create, edit, and delete blog posts with rich text formatting.
+- 🏷️ **Categories & Tags** – Organize posts with customizable categories and tags.
+- 🧩 **Modern & Accessible UI** – Built with [shadcn/ui](https://ui.shadcn.com/) for accessibility and responsiveness.
+- 📁 **Sidebar Navigation** – Collapsible sidebar for intuitive navigation.
+- ✅ **Validated Forms** – Forms include real-time validation and user-friendly feedback.
+- 🌙 **Dark Mode Support** – Automatically adapts to system theme preferences.
+- 🔍 **SEO Optimized** – Fast-loading, SEO-friendly architecture.
+- 📱 **Mobile-Friendly** – Responsive design for all devices.
 ---
 
 
