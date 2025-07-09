@@ -1,7 +1,7 @@
-/* 
-.blogContent{
+
+/* .blogContent{
     
-}
+} */
 
 .blogContent h2{
     font-size: 1.2rem;
@@ -12,7 +12,7 @@
     margin-bottom: 10px;
 }
 .blogContent p{
-    color: var(--muted);
+    color: whitesmoke;
 }
 
 .blogContent ol{
@@ -31,4 +31,4 @@
 }
 .blogContent img{
     border-radius: 10px;
-} */
+}
