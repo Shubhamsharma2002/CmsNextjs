@@ -5,12 +5,14 @@ import { useForm } from 'react-hook-form';
 import { slugify } from 'slugmaster';
 import ImageUpload from './imageUpload';
 import Tiptap from './textEditor/TipTapEditor';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 export default function Editor({ onSave, initialData }) {
   const { register, handleSubmit, setValue } = useForm();
   const [content, setContent] = useState('');
   const [ogImage, setOgImage] = useState('');
-
+ const router = useRouter()
   // Load initial data
   useEffect(() => {
     if (initialData) {
@@ -28,17 +30,31 @@ export default function Editor({ onSave, initialData }) {
   }, [initialData, setValue]);
 
   // Save handler
-  const handleForm = (data) => {
-    const generatedSlug = slugify(data.title);
+const handleForm = async (data) => {
+  try {
+    const generatedSlug = initialData ? initialData.slug : slugify(data.title);
     const fullPayload = {
       ...data,
       slug: generatedSlug,
       ogImage,
-      content, // updated content from TipTap
+      content,
     };
 
-    onSave(fullPayload); // callback
-  };
+    await onSave(fullPayload); // ✅ await this if it's async
+
+   toast.success(initialData ? "Your blog was updated" : "Your blog page was published")
+  
+      
+
+
+    if (data.status === "PUBLISHED") {
+      router.push(`/blog/${generatedSlug}`);
+    }
+  } catch (error) {
+    console.error("Form submission error:", error.message);
+  }
+};
+
 
   return (
     <section>
