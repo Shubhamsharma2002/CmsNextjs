@@ -1,23 +1,18 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Tiptap from './textEditor/TipTapEditor';
 import { slugify } from 'slugmaster';
 import ImageUpload from './imageUpload';
+import Tiptap from './textEditor/TipTapEditor';
 
 export default function Editor({ onSave, initialData }) {
   const { register, handleSubmit, setValue } = useForm();
   const [content, setContent] = useState('');
   const [ogImage, setOgImage] = useState('');
- const handleChange = (value) => {
-    
-    setContent(value);
-  };
-  // Log when initialData is received
-  useEffect(() => {
-   
 
+  // Load initial data
+  useEffect(() => {
     if (initialData) {
       setValue('title', initialData.title || '');
       setValue('keywords', initialData.keywords || '');
@@ -26,30 +21,23 @@ export default function Editor({ onSave, initialData }) {
       setValue('metaDescription', initialData.desc || '');
       setValue('status', initialData.status || 'DRAFT');
 
-      const safeContent = initialData.content || '<p></p>';
-      // console.log('🧾 Setting content in state:', safeContent);
-      setContent(safeContent);
-
-      const safeThumbnail = initialData.thumbnail || '';
-      // console.log('🖼️ Setting thumbnail:', safeThumbnail);
-      setOgImage(safeThumbnail);
+      // 🟢 IMPORTANT: Set editor content here
+      setContent(initialData.content || '<p></p>');
+      setOgImage(initialData.thumbnail || '');
     }
   }, [initialData, setValue]);
-// console.log("🧠 Final content passed to Tiptap:", content);
-  // Log content whenever it changes via TipTap
- 
 
+  // Save handler
   const handleForm = (data) => {
     const generatedSlug = slugify(data.title);
     const fullPayload = {
       ...data,
       slug: generatedSlug,
       ogImage,
-      content,
+      content, // updated content from TipTap
     };
 
-    // console.log('🚀 Submitting form with values:', fullPayload);
-    onSave(fullPayload);
+    onSave(fullPayload); // callback
   };
 
   return (
@@ -62,14 +50,7 @@ export default function Editor({ onSave, initialData }) {
           type="text"
         />
 
-        {typeof content === 'string' ? (
-          <>
-            <p className="text-xs text-green-400">✅ Rendering Tiptap editor</p>
-            <Tiptap content={content} onChange={handleChange} />
-          </>
-        ) : (
-          <p className="text-red-400">⚠️ Content is not ready or invalid</p>
-        )}
+        <Tiptap content={content} onChange={setContent} />
 
         <input
           {...register('excerpt')}
