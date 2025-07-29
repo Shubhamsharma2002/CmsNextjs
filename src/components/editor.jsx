@@ -7,7 +7,15 @@ import ImageUpload from './imageUpload';
 import Tiptap from './textEditor/TipTapEditor';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-
+import { z } from "zod"
+// const schema = z.object({
+//   title: z.string().min(10, { message: 'Title must contain 10 or more characters'}).min(1, { message: "Title must not be empty"}),
+//   excerpt: z.string().min(10, { message: "Please add some details in the excerpt"}),
+//   category: z.string().min(1, { message: "Please add a category"}),
+//   metaDescription: z.string().optional(),
+//   keywords: z.string().min(1, { message: "Keywords should be there for SEO benefits"}),
+//   status: z.enum(["DRAFT", "PUBLISHED"])
+// })
 export default function Editor({ onSave, initialData }) {
   const { register, handleSubmit, setValue } = useForm();
   const [content, setContent] = useState('');
@@ -58,7 +66,28 @@ const handleForm = async (data) => {
 
   return (
     <section>
-      <form className="space-y-4" onSubmit={handleSubmit(handleForm)}>
+      <form className="space-y-4"   onSubmit={handleSubmit(async (data) => {
+  try {
+    const validatedData = await schema.parseAsync(data);
+    await handleForm(validatedData);
+  } catch (error) {
+    if (
+      error &&
+      typeof error === "object" &&
+      "errors" in error &&
+      Array.isArray(error.errors)
+    ) {
+      // Zod-style error with array of issues
+      error.errors.forEach((err) => {
+        toast.error(err.message || "Validation error");
+      });
+    } else {
+      console.error("Unexpected error:", error);
+      toast.error("Something went wrong while submitting the form.");
+    }
+  }
+})}
+>
         <input
           {...register('title')}
           placeholder="Enter the post title"
