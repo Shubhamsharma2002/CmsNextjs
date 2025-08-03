@@ -41,8 +41,11 @@ A modern and responsive Content Management System (CMS) for managing blogs, buil
 1. Clone the repo  
    ```bash
    git clone https://github.com/Shubhamsharma2002/CmsNextjs
+
    cd blog-cms
+
    npm install
+   
    npm run dev
    
    ```
