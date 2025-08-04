@@ -8,6 +8,7 @@ A modern and responsive Content Management System (CMS) for managing blogs, buil
 
 ## ✨ Features
 
+
 - 📝 **Rich Blog Editor** – Create, edit, and delete blog posts with rich text formatting.
 - 🏷️ **Categories & Tags** – Organize posts with customizable categories and tags.
 - 🧩 **Modern & Accessible UI** – Built with [shadcn/ui](https://ui.shadcn.com/) for accessibility and responsiveness.
