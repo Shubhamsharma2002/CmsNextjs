@@ -16,6 +16,7 @@ export default function ImageUpload({ returnImage, preloadedImage }) {
     setUploaded(false); // reset on new file select
   };
 
+  
   const handleUpload = async () => {
     if (!imageFile) {
       setMessage("❌ No file selected.");
