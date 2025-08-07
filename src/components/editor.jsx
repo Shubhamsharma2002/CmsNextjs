@@ -7,89 +7,88 @@ import ImageUpload from './imageUpload';
 import Tiptap from './textEditor/TipTapEditor';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import { z } from "zod"
+import { z , ZodError} from 'zod';
 
+const schema = z.object({
+  title: z.string().min(10, { message: "Title must contain 10 or more characters" }),
+  excerpt: z.string().min(10, { message: "Please add some details in the excerpt" }),
+  category: z.string().min(1, { message: "Please add a category" }),
+  metaDescription: z.string().optional(),
+  keywords: z.string().min(1, { message: "Keywords should be there for SEO benefits" }),
+  status: z.enum(["DRAFT", "PUBLISHED"])
+});
 
-// const schema = z.object({
-//   title: z.string().min(10, { message: 'Title must contain 10 or more characters'}).min(1, { message: "Title must not be empty"}),
-//   excerpt: z.string().min(10, { message: "Please add some details in the excerpt"}),
-//   category: z.string().min(1, { message: "Please add a category"}),
-//   metaDescription: z.string().optional(),
-//   keywords: z.string().min(1, { message: "Keywords should be there for SEO benefits"}),
-//   status: z.enum(["DRAFT", "PUBLISHED"])
-// })
 export default function Editor({ onSave, initialData }) {
-  const { register, handleSubmit, setValue } = useForm();
-  const [content, setContent] = useState('');
-  const [ogImage, setOgImage] = useState('');
- const router = useRouter()
-  // Load initial data
+  const { register, handleSubmit, setValue, formState: { isSubmitting } } = useForm({
+    defaultValues: {
+      title: initialData?.title || '',
+      keywords: initialData?.keywords || '',
+      category: initialData?.catSlug || '',
+      excerpt: initialData?.excerpt || '',
+      metaDescription: initialData?.desc || '',
+      status: initialData?.status || 'DRAFT',
+    }
+  });
+
+  const [content, setContent] = useState(initialData?.content || '<p></p>');
+  const [ogImage, setOgImage] = useState(initialData?.thumbnail || '');
+  const router = useRouter();
+
   useEffect(() => {
     if (initialData) {
-      setValue('title', initialData.title || '');
-      setValue('keywords', initialData.keywords || '');
-      setValue('category', initialData.catSlug || '');
-      setValue('excerpt', initialData.excerpt || '');
-      setValue('metaDescription', initialData.desc || '');
-      setValue('status', initialData.status || 'DRAFT');
-
-      // 🟢 IMPORTANT: Set editor content here
       setContent(initialData.content || '<p></p>');
       setOgImage(initialData.thumbnail || '');
     }
-  }, [initialData, setValue]);
+  }, [initialData]);
 
-  // Save handler
-const handleForm = async (data) => {
-  try {
-    const generatedSlug = initialData ? initialData.slug : slugify(data.title);
-    const fullPayload = {
-      ...data,
-      slug: generatedSlug,
-      ogImage,
-      content,
-    };
+  const handleForm = async (data) => {
+    try {
+      const generatedSlug = initialData ? initialData.slug : slugify(data.title);
+      const fullPayload = {
+        ...data,
+        slug: generatedSlug,
+        ogImage,
+        content,
+      };
 
-    await onSave(fullPayload); // ✅ await this if it's async
+      await onSave(fullPayload);
 
-   toast.success(initialData ? "Your blog was updated" : "Your blog page was published")
-  
-      
+      toast.success(initialData ? "Your blog was updated" : "Your blog page was published");
 
-
-    if (data.status === "PUBLISHED") {
-      router.push(`/blog/${generatedSlug}`);
+      if (data.status === "PUBLISHED") {
+        router.push(`/blog/${generatedSlug}`);
+      }
+    } catch (error) {
+      console.error("Form submission error:", error.message);
+      toast.error("Failed to save. Please try again.");
     }
-  } catch (error) {
-    console.error("Form submission error:", error.message);
-  }
-};
-
+  };
 
   return (
     <section>
-      <form className="space-y-4"   onSubmit={handleSubmit(async (data) => {
-  try {
-    const validatedData = await schema.parseAsync(data);
-    await handleForm(validatedData);
-  } catch (error) {
-    if (
-      error &&
-      typeof error === "object" &&
-      "errors" in error &&
-      Array.isArray(error.errors)
-    ) {
-      // Zod-style error with array of issues
-      error.errors.forEach((err) => {
-        toast.error(err.message || "Validation error");
+      <form className="space-y-4" onSubmit={handleSubmit(async(data)=> {
+try {
+  await schema.parseAsync(data);
+  await handleForm(data);
+} catch (error) {
+  if (error instanceof ZodError) {
+    const issues = error.issues;
+
+    if (Array.isArray(issues)) {
+      issues.forEach((issue) => {
+        toast.error(issue.message);
       });
     } else {
-      console.error("Unexpected error:", error);
-      toast.error("Something went wrong while submitting the form.");
+      toast.error("Validation failed but no detailed errors available.");
     }
+  } else {
+    toast.error("Unexpected error occurred. Please try again.");
   }
-})}
->
+}
+
+
+
+      })}>
         <input
           {...register('title')}
           placeholder="Enter the post title"
@@ -142,9 +141,10 @@ const handleForm = async (data) => {
 
           <button
             type="submit"
-            className="bg-zinc-800 px-3 py-2 rounded cursor-pointer"
+            disabled={isSubmitting}
+            className={`bg-zinc-800 px-3 py-2 rounded cursor-pointer ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
           >
-            Save
+            {isSubmitting ? "Saving..." : "Save"}
           </button>
         </div>
       </form>
