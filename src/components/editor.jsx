@@ -20,6 +20,9 @@ const schema = z.object({
   status: z.enum(["DRAFT", "PUBLISHED"])
 });
 
+
+
+
 export default function Editor({ onSave, initialData }) {
   const { register, handleSubmit, setValue, formState: { isSubmitting } } = useForm({
     defaultValues: {
