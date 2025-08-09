@@ -35,6 +35,9 @@ export default function Editor({ onSave, initialData }) {
     }
   });
 
+
+
+  
   const [content, setContent] = useState(initialData?.content || '<p></p>');
   const [ogImage, setOgImage] = useState(initialData?.thumbnail || '');
   const router = useRouter();
