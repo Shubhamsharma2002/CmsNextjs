@@ -1,5 +1,5 @@
-'use client';
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 
 export default function ImageUpload({ returnImage, preloadedImage }) {
   const [imageFile, setImageFile] = useState(null);
@@ -16,7 +16,6 @@ export default function ImageUpload({ returnImage, preloadedImage }) {
     setUploaded(false); // reset on new file select
   };
 
-  
   const handleUpload = async () => {
     if (!imageFile) {
       setMessage("❌ No file selected.");
@@ -27,16 +26,19 @@ export default function ImageUpload({ returnImage, preloadedImage }) {
     setMessage("");
 
     const formData = new FormData();
-    formData.append('file', imageFile);
-    formData.append('upload_preset', 'blogify');
-    formData.append('cloud_name', 'dvpenqpdj');
+    formData.append("file", imageFile);
+    formData.append("upload_preset", "blogify");
+    formData.append("cloud_name", "dvpenqpdj");
 
     try {
       // cloudnary link
-      const res = await fetch(`https://api.cloudinary.com/v1_1/dvpenqpdj/image/upload`, {
-        method: 'POST',
-        body: formData,
-      });
+      const res = await fetch(
+        `https://api.cloudinary.com/v1_1/dvpenqpdj/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await res.json();
       setLoading(false);
@@ -65,7 +67,7 @@ export default function ImageUpload({ returnImage, preloadedImage }) {
             className="px-4 py-2 bg-blue-500 text-white rounded"
             disabled={loading}
           >
-            {loading ? 'Uploading...' : 'Upload Image'}
+            {loading ? "Uploading..." : "Upload Image"}
           </button>
         </>
       )}
@@ -79,7 +81,11 @@ export default function ImageUpload({ returnImage, preloadedImage }) {
       )}
 
       {message && (
-        <p className={`text-sm ${message.startsWith("✅") ? "text-green-500" : "text-red-500"}`}>
+        <p
+          className={`text-sm ${
+            message.startsWith("✅") ? "text-green-500" : "text-red-500"
+          }`}
+        >
           {message}
         </p>
       )}
