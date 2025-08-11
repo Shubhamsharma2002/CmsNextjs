@@ -21,7 +21,7 @@ export default function EditableBlogCards({ post }){
         })
         if(res.ok){
             setCurrentStatus("DELETE");
-           toast.success("Post deleted")
+           toast.error("Blog Deleted ..")
             router.refresh();
         }
     }
@@ -35,7 +35,7 @@ export default function EditableBlogCards({ post }){
         })
         if(res.ok){
             setCurrentStatus("DRAFT");
-            // toast.info
+            toast.info("Blog change to Draft !!" )
             router.refresh();
         }
     }
@@ -49,6 +49,7 @@ export default function EditableBlogCards({ post }){
         })
         if(res.ok){
             setCurrentStatus("PUBLISHED");
+            toast.success('Blog Published Sucessfully ::) ')
             router.refresh();
         }
     }
