@@ -5,7 +5,7 @@ import isAdmin from "@/utils/isAdmin";
 
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
-
+// delete blog api
 export async function DELETE(request, { params }){
     const { id } = params;
 

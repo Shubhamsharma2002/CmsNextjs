@@ -5,7 +5,7 @@ import isAdmin from "@/utils/isAdmin";
 
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
-
+// update blogs api
 export async function PATCH(request){
     const { id, status } = await request.json();
 

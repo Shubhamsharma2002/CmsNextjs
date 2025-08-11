@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { config } from "../static/config";
 
-
+// api for admin viw all blogs on there website
 export async function getAllBlogs({page, category}){
     const postsToShow = config.perPage;
 
@@ -33,6 +33,7 @@ export async function getAllBlogs({page, category}){
     return { posts, count}
 }
 
+// this will show specific user blogs only
 export async function getUserBlogs({page, category, userId}){
     const postsToShow = config.perPage;
 
