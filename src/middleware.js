@@ -18,6 +18,8 @@ export async function middleware(request) {
     let ip = request.ip || request.headers.get("x-forwarded-for") || "unknown";
 
     const { limit, remaining, reset } = await rateLimit.limit(ip);
+    console.log(limit,remaining, "limit remainig");
+    
     if (remaining === 0) {
       return NextResponse.json(
         { message: "You have reached limit" },
