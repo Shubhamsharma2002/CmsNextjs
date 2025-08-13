@@ -26,7 +26,7 @@ export async function generateMetadata({ params }) {
     title: res.title,
     description: res.excerpt,
     openGraph: {
-      // images: [`${process.env.NEXT_PUBLIC_BASE_URL}/api/og?title=${res.title}`]
+      images: [`${process.env.NEXT_PUBLIC_BASE_URL}/api/og?title=${res.title}`]
     },
   };
 }
