@@ -21,15 +21,14 @@ import Link from "next/link";
 //     url: "demo-slug",
 //   },
 // ];
-const fetchAllBlogs = async()=> {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get`);
-    const data = await res.json();
-    return data;
-}
-
+const fetchAllBlogs = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get`);
+  const data = await res.json();
+  return data;
+};
 
 export default async function Blogs() {
-   const blogData = await fetchAllBlogs();
+  const blogData = await fetchAllBlogs();
   return (
     <section className="py-8 px-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -49,9 +48,11 @@ export default async function Blogs() {
 
 const BlogCard = ({ title, excerpt, image, url }) => {
   return (
-    <div className="bg-gray-600/20 rounded-lg border flex flex-col p-4 gap-3
+    <div
+      className="bg-gray-600/20 rounded-lg border flex flex-col p-4 gap-3
                     hover:scale-[1.03] transition-transform duration-300 
-                    w-full max-w-[320px] mx-auto text-center">
+                    w-full max-w-[320px] mx-auto text-center"
+    >
       {image && (
         <Image
           className="w-full rounded-md"
