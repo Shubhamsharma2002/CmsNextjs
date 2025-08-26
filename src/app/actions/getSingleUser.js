@@ -1,5 +1,7 @@
 import { prisma } from "@/lib/prisma";
 
+
+// fetching user data by name....
 export async function getSingleUser(username) {
   const user = await prisma.user.findUnique({
     where: {
@@ -23,6 +25,7 @@ export async function getSingleUser(username) {
   return user;
 }
 
+// fetching user data by user id for diff use on various pages....
 export async function getUserById(id) {
   try {
     const user = await prisma.user.findUnique({
