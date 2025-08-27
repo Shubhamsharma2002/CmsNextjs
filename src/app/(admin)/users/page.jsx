@@ -23,7 +23,7 @@ export default async function AllUsers() {
   if (!adminCheck) {
     return (
       <section className="w-full h-screen justify-center items-center">
-        You are not Authorized
+        You are not Authorized .........
       </section>
     );
   }
