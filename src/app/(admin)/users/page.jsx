@@ -8,10 +8,12 @@ import { getServerSession } from "next-auth";
 export default async function AllUsers() {
   const session = await getServerSession(authOptions);
 
+
+
   if (!session) {
     return (
       <section className="w-full h-screen justify-center items-center">
-        You are not Authenticated!
+        You are not Authenticated..!
       </section>
     );
   }
