@@ -10,11 +10,13 @@ export default async function AllPosts({ searchParams }) {
   const session = await getServerSession(authOptions);
 
   const adminCheck = await isAdmin(session);
-  
+
   console.log(adminCheck, " admin Check");
   if (!adminCheck) {
     return <UserAllPosts page={page} category={category} user={session.user} />;
   }
+
+  
   return (
     <div>
       <AdminAllPosts page={page} category={category} />
