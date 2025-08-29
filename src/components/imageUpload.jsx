@@ -8,6 +8,8 @@ export default function ImageUpload({ returnImage, preloadedImage }) {
   const [message, setMessage] = useState("");
   const [uploaded, setUploaded] = useState(false); // Track if upload succeeded
 
+
+  
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setImageFile(file);
