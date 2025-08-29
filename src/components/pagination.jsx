@@ -52,6 +52,7 @@ export default function Pagination({
             currentPage == totalPages ? "text-gray-400 cursor-not-allowed" : ""
           }`}
         >
+          
           Next
         </button>
       </div>
