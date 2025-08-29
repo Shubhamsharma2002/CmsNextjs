@@ -28,6 +28,7 @@ export default function Pagination({
             currentPage == 1 ? "text-gray-400 cursor-not-allowed" : ""
           }`}
         >
+          
           Prev
         </button>
 
@@ -52,7 +53,7 @@ export default function Pagination({
             currentPage == totalPages ? "text-gray-400 cursor-not-allowed" : ""
           }`}
         >
-          
+
           Next
         </button>
       </div>
