@@ -1,26 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-// const blogConfig = [
-//   {
-//     title: "React vs NextJS",
-//     excerpt: "Nextjs is the ultimate development framework...",
-//     image: "/thumbnails/react-v-next.png",
-//     url: "demo-slug",
-//   },
-//   {
-//     title: "Dreams to be a Remote developer",
-//     excerpt: "Get a job as remote developer...",
-//     image: "/thumbnails/dreams.png",
-//     url: "demo-slug",
-//   },
-//   {
-//     title: "Become a backend dev in no time",
-//     excerpt: "How to become a backend developer in 2025...",
-//     image: "/thumbnails/become-backend-dev.png",
-//     url: "demo-slug",
-//   },
-// ];
 const fetchAllBlogs = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get`);
   const data = await res.json();
