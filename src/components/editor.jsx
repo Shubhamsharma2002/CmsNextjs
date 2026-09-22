@@ -1,12 +1,10 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { slugify } from "slugmaster";
 import ImageUpload from "./imageUpload";
 import Tiptap from "./textEditor/TipTapEditor";
 import { toast } from "sonner";
-
 import { useRouter } from "next/navigation";
 import { z, ZodError } from "zod";
 
