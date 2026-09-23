@@ -7,8 +7,6 @@ import Tiptap from "./textEditor/TipTapEditor";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { z, ZodError } from "zod";
-
-
 const schema = z.object({
   title: z
     .string()
@@ -23,6 +21,7 @@ const schema = z.object({
     .min(1, { message: "Keywords should be there for SEO benefits" }),
   status: z.enum(["DRAFT", "PUBLISHED"]),
 });
+
 
 export default function Editor({ onSave, initialData }) {
   const {
@@ -40,6 +39,9 @@ export default function Editor({ onSave, initialData }) {
       status: initialData?.status || "DRAFT",
     },
   });
+
+
+  
 
   const [content, setContent] = useState(initialData?.content || "<p></p>");
   const [ogImage, setOgImage] = useState(initialData?.thumbnail || "");
