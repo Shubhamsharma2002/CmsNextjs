@@ -2,7 +2,13 @@
 A modern and responsive Content Management System (CMS) for managing blogs, built with React and enhanced by **shadcn/ui** components for a sleek and accessible UI experience.
 
 ---
+
+
+
+
+
 ## ✨ Features
+
 
 - 📝 **Rich Blog Editor** – Create, edit, and delete blog posts with rich text formatting.
 - 🏷️ **Categories & Tags** – Organize posts with customizable categories and tags.
