@@ -3,10 +3,6 @@ A modern and responsive Content Management System (CMS) for managing blogs, buil
 
 ---
 
-
-
-
-
 ## ✨ Features
 
 
