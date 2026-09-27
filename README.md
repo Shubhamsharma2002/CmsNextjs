@@ -4,8 +4,6 @@ A modern and responsive Content Management System (CMS) for managing blogs, buil
 ---
 
 ## ✨ Features
-
-
 - 📝 **Rich Blog Editor** – Create, edit, and delete blog posts with rich text formatting.
 - 🏷️ **Categories & Tags** – Organize posts with customizable categories and tags.
 - 🧩 **Modern & Accessible UI** – Built with [shadcn/ui](https://ui.shadcn.com/) for accessibility and responsiveness.
@@ -16,6 +14,7 @@ A modern and responsive Content Management System (CMS) for managing blogs, buil
 - 📱 **Mobile-Friendly** – Responsive design for all devices.
 
 ---
+
 
 
 ## 🛠️ Tech Stack
@@ -29,19 +28,15 @@ A modern and responsive Content Management System (CMS) for managing blogs, buil
 
 ---
 
-
-
 ## Installation
 
 
 1. Clone the repo  
+
    ```bash
    git clone https://github.com/Shubhamsharma2002/CmsNextjs
-
    cd blog-cms
-
    npm install
-
    npm run dev
    
    ```
