@@ -3,7 +3,6 @@ import EditableBlogCards from "./EditableBlogCards";
 import Pagination from "../pagination";
 import { config } from "@/app/static/config";
 import CategoryFilter from "../categoryFilter";
-
 export default async function AdminAllPosts({ page =1, category }){
      const { posts, count } = await getAllBlogs({page, category});
 return (
