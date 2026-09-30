@@ -12,6 +12,7 @@ export default function EditableBlogCards({ post }){
     const router = useRouter()
     const [currentStatus, setCurrentStatus] = useState(post.status)
 
+    
     const handleDelete = async(id)=> {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/delete/${post.id}`, {
             method: "DELETE",
