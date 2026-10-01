@@ -6,6 +6,11 @@ async function fetchAllUsers(){
     const res = await prisma.user.findMany();
     return res;
 }
+
+
+
+
+
 export default async function AdminAllUsers(){
     const users = await fetchAllUsers();
 
