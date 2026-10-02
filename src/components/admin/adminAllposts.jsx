@@ -7,7 +7,7 @@ export default async function AdminAllPosts({ page =1, category }){
      const { posts, count } = await getAllBlogs({page, category});
 return (
         <section className="p-8 flex flex-col gap-4">
-            <h2>Manage all the Blogs</h2>
+            <h2> Manage all the Blogs </h2>
             <CategoryFilter />
             {posts.map(post=> {
                 return <EditableBlogCards key={post.id} post={post}/>
