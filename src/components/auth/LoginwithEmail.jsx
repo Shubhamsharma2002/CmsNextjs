@@ -4,7 +4,6 @@ export default function LoginWithEmail() {
   return (
     <div className="border-2 border-amber-200 p-6 rounded-lg w-full max-w-md mx-auto space-y-4 bg-white">
       <h2 className="text-xl font-semibold text-gray-800 text-center">Login with Email</h2>
-
       <div className="flex flex-col gap-2">
         <label htmlFor="email" className="text-sm font-medium text-gray-700">Email</label>
         <input
@@ -14,6 +13,9 @@ export default function LoginWithEmail() {
           className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-300"
         />
       </div>
+
+
+
 
       <div className="flex flex-col gap-2">
         <label htmlFor="password" className="text-sm font-medium text-gray-700">Password</label>
