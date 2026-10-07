@@ -4,6 +4,8 @@ import { authOptions } from "@/lib/authOptions";
 import isAdmin from "@/utils/isAdmin";
 import { getServerSession } from "next-auth";
 
+
+
 export default async function AllPosts({ searchParams }) {
   const page = searchParams.page || 1;
   const category = searchParams.cat || null;
