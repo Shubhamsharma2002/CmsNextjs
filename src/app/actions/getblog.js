@@ -4,7 +4,6 @@ import { config } from "../static/config";
 // api for admin viw all blogs on there website .........
 export async function getAllBlogs({page, category}){
     const postsToShow = config.perPage;
-
     let query = {
         take: postsToShow,
         skip: postsToShow * (page - 1),
@@ -20,7 +19,6 @@ export async function getAllBlogs({page, category}){
             createdAt: "desc"
         }
     }
-
     const [posts, count] = await prisma.$transaction([
         prisma.post.findMany(query),
         prisma.post.count({

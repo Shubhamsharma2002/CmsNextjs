@@ -4,12 +4,16 @@ import { NextResponse } from "next/server";
 export const runtime = "edge";
 
 
+
+
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const titleParam = searchParams.get("title") || "Blogify";
     const title = titleParam.charAt(0).toUpperCase() + titleParam.slice(1);
 
+
+    
     return new ImageResponse(
       (
         <div
